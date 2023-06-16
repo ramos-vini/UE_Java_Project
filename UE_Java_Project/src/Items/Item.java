@@ -2,7 +2,7 @@ package Items;
 
 import java.util.ArrayList;
 
-abstract public class Item {
+public abstract class Item {
 	// Type
 	private String type;
 
@@ -12,6 +12,7 @@ abstract public class Item {
 	// Weight (kg)
 	private Double weight;
 
+	// Constructor 
 	Item(String type, ArrayList<Double> size, Double weight) {
 		this.type = type;
 		this.size = size;

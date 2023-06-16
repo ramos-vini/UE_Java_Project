@@ -1,20 +1,15 @@
 import Items.*;
+import Containers.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Laptop myLaptop = new Laptop();
-		Mouse myMouse = new Mouse();
-		Desktop myDesktop = new Desktop();
-		LcdScreen myLcdScreen = new LcdScreen();
+		SmallContainer mySmallContainer = new SmallContainer();
 		
-		myLaptop.printInfo();
-		System.out.println();
-		myMouse.printInfo();
-		System.out.println();
-		myDesktop.printInfo();
-		System.out.println();
-		myLcdScreen.printInfo();
+		mySmallContainer.printInfo();
+		System.out.println("---------------");
+		System.out.println("Volume: " + mySmallContainer.calculateVolume() + " (m^3)");
+
 	}
 
 }
