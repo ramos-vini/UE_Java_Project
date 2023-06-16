@@ -2,16 +2,26 @@
 
 import Items.*;
 import Containers.*;
+import Methods.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-		SmallContainer mySmallContainer = new SmallContainer();
 		
-		mySmallContainer.printInfo();
-		System.out.println("---------------");
-		System.out.println("Volume: " + mySmallContainer.calculateVolume() + " (m^3)");
 
+	}
+	
+	// Test static methods
+	public static void addProductDetails() {
+		
+	}
+	
+	public static void readOrder() {
+		
+	}
+	
+	public static void printResults() {
+		
 	}
 
 }

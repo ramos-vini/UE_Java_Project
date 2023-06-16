@@ -5,53 +5,41 @@ import java.util.ArrayList;
 import Containers.Container;
 import Items.Item;
 
-public class Calculation implements CalcInterface{
+public class Calculation{
 
-	@Override
+	// Item as argument
 	public void addItem(Item item) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	@Override
-	public void printItem(Item item) {
-		// TODO Auto-generated method stub
+	public void printItem(Item item) {
 		
 	}
 
-	@Override
-	public Double totalVolume(ArrayList<Item> items) {
-		// TODO Auto-generated method stub
+	// Items as argument
+	public Double totalVolume(ArrayList<Item> items) {
 		return null;
 	}
 
-	@Override
 	public Double totalWeight(ArrayList<Item> items) {
-		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public ArrayList<Container> bestShipping(ArrayList<Item> items) {
 		return null;
 	}
 
-	@Override
-	public ArrayList<Container> bestShipping(ArrayList<Item> items) {
-		// TODO Auto-generated method stub
+	// Order (Containers) as argument
+	public Double shippingPrice(ArrayList<Container> order) {
 		return null;
 	}
 
-	@Override
-	public Double shippingPrice(ArrayList<Container> order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addOrder(ArrayList<Container> order) {
-		// TODO Auto-generated method stub
+	public void addOrder(ArrayList<Container> order) {
 		
 	}
 
-	@Override
-	public void printOrder(ArrayList<Container> order) {
-		// TODO Auto-generated method stub
+	public void printOrder(ArrayList<Container> order) {
 		
 	}
 	
