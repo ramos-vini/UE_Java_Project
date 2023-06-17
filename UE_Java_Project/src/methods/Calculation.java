@@ -1,9 +1,9 @@
-package Methods;
+package methods;
 
 import java.util.ArrayList;
 
-import Containers.Container;
-import Items.Item;
+import containers.Container;
+import items.Item;
 
 public class Calculation{
 
@@ -13,17 +13,27 @@ public class Calculation{
 		
 	}
 
-	public void printItem(Item item) {
-		
+	public void printItem(Item item) {		item.printInfo();
 	}
 
 	// Items as argument
-	public Double totalVolume(ArrayList<Item> items) {
-		return null;
+	public Double totalVolume(ArrayList<Item> items) {		Double totalVolume = 0.0;
+		
+		for(Item item : items) {
+			totalVolume += item.calculateVolume();
+		}
+		
+		return totalVolume;
 	}
 
 	public Double totalWeight(ArrayList<Item> items) {
-		return null;
+		Double totalWeight = 0.0;
+		
+		for(Item item : items) {
+			totalWeight += item.getWeight();
+		}
+		
+		return totalWeight;
 	}
 	
 	public ArrayList<Container> bestShipping(ArrayList<Item> items) {

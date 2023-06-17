@@ -1,6 +1,8 @@
-package Containers;
+package containers;
 
 import java.util.ArrayList;
+
+import items.*;
 
 public abstract class Container {
 	    // Type
@@ -8,14 +10,13 @@ public abstract class Container {
 
 		// Size (m)
 		private ArrayList<Double> size; // 3D Size
+		
+		// Items
+		private ArrayList<Item> items;
 
-		// Weight (kg)
-		private Double weight;
-
-		Container(String type, ArrayList<Double> size, Double weight) {
+		Container(String type, ArrayList<Double> size) {
 			this.type = type;
 			this.size = size;
-			this.weight = weight;
 		}
 
 		// Getters & Setters
@@ -34,14 +35,6 @@ public abstract class Container {
 		public void setSize(ArrayList<Double> size) {
 			this.size = size;
 		}
-
-		public Double getWeight() {
-			return weight;
-		}
-
-		public void setWeight(Double weight) {
-			this.weight = weight;
-		}
 		
 		// Methods
 		public Double calculateVolume() {
@@ -57,6 +50,5 @@ public abstract class Container {
 		public void printInfo() {
 			System.out.println("Type: " + this.getType());
 			System.out.println("Size: " + this.getSize().toString().replaceAll(",", " x").replaceAll("[\\[\\]]", "") + " (m)");
-			System.out.println("Weight: " + this.getWeight() + " (kg)");
 		}
 }
