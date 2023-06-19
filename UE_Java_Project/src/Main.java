@@ -20,17 +20,19 @@ public class Main {
 			System.out.printf("| " + (i + 1) + "  -  %-12s%2s\n", itemsList.get(i), "|");
 			System.out.println("|____________________|");
 		}
-		
+
+		// Calculation Object
+		Calculation calc = new Calculation();
+
 		// Order creation
-		Order order = new Order();
+		ArrayList<Product> order = new ArrayList<Product>();
 
 		// Item Input
+		Scanner scanner = new Scanner(System.in);
+
 		Boolean addMoreProducts = true;
-		
+
 		while (addMoreProducts == true) {
-
-			Scanner scanner = new Scanner(System.in);
-
 			// Type
 			Integer item = 0;
 
@@ -38,6 +40,7 @@ public class Main {
 				try {
 					System.out.println("\nEnter the number of the item (1-" + itemsList.size() + "): ");
 					item = scanner.nextInt();
+					scanner.nextLine();
 				} catch (Exception e) {
 					scanner.nextLine();
 				}
@@ -48,35 +51,62 @@ public class Main {
 
 			while (quantity < 1) {
 				try {
-					System.out.println("\nEnter the quantity of the item: ");
+					System.out.println("\nEnter the quantity of the item [" + itemsList.get(item - 1) + "]: ");
 					quantity = scanner.nextInt();
+					scanner.nextLine();
 				} catch (Exception e) {
 					scanner.nextLine();
 				}
 			}
 
 			// addItems()
+			Product product = null;
+
+			switch (item) {
+			case 1:
+				product = new Product(new Desktop(), quantity);
+				break;
+
+			case 2:
+				product = new Product(new Laptop(), quantity);
+				break;
+
+			case 3:
+				product = new Product(new LcdScreen(), quantity);
+				break;
+
+			case 4:
+				product = new Product(new Mouse(), quantity);
+				break;
+
+			default:
+				break;
+			}
+
+			calc.addItems(product, order);
 
 			// Add more products or Finish the Order
 			String addMoreResponse = "";
-			while (addMoreResponse != "Y" || addMoreResponse != "N") {
+			while (!addMoreResponse.equalsIgnoreCase("Y") && !addMoreResponse.equalsIgnoreCase("N")) {
 				try {
 					System.out.println("\nAdd more products? (Y/N)");
-					addMoreResponse = (scanner.nextLine()).toUpperCase();
-					
-					if(addMoreResponse == "N") {
+					addMoreResponse = scanner.nextLine();
+
+					if (addMoreResponse.equalsIgnoreCase("N")) {
 						addMoreProducts = false;
 					}
-					
+
 				} catch (Exception e) {
 					scanner.nextLine();
 				}
 			}
-
-			scanner.close();
 		}
-		
+		scanner.close();
+
 		// addOrder()
+		System.out.println(order.get(0).getItem().getType());
+		System.out.println(order.get(0).getQuantity());
+		System.out.println("Order added!");
 	}
 
 	// Test static methods

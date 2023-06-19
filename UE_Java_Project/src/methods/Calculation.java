@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import containers.Container;
 import items.Item;
+import orders.Product;
 
 public class Calculation{
 
 	// Item as argument
-	public void addItem(Item item) {
-		
-		
+	public void addItems(Product product, ArrayList<Product> order) {
+		order.add(product);
 	}
 
 	public void printItem(Item item) {		item.printInfo();

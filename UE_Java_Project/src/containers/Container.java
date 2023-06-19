@@ -10,9 +10,6 @@ public abstract class Container {
 
 		// Size (m)
 		private ArrayList<Double> size; // 3D Size
-		
-		// Items
-		private ArrayList<Item> items;
 
 		Container(String type, ArrayList<Double> size) {
 			this.type = type;
