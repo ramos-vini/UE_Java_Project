@@ -4,52 +4,50 @@ import java.util.ArrayList;
 
 import containers.Container;
 import items.Item;
-import orders.Product;
+import orders.ItemOrder;
+import orders.Order;
 
 public class Calculation{
 
 	// Item as argument
-	public void addItems(Product product, ArrayList<Product> order) {
-		order.add(product);
-	}
-
 	public void printItem(Item item) {		item.printInfo();
 	}
 
-	// Items as argument
-	public Double totalVolume(ArrayList<Item> items) {		Double totalVolume = 0.0;
+	// itemOrder (items) as argument
+	public Double totalVolume(ItemOrder itemOrder) {		
+		Double volume = itemOrder.getItem().calculateVolume() * itemOrder.getQuantity();
 		
-		for(Item item : items) {
-			totalVolume += item.calculateVolume();
-		}
-		
-		return totalVolume;
+		return volume;
 	}
 
-	public Double totalWeight(ArrayList<Item> items) {
-		Double totalWeight = 0.0;
+	public Double totalWeight(ItemOrder itemOrder) {
+
+		Double weight = itemOrder.getItem().getWeight() * itemOrder.getQuantity();
 		
-		for(Item item : items) {
-			totalWeight += item.getWeight();
-		}
-		
-		return totalWeight;
+		return weight;
+	}
+
+	// Order as argument
+	public ArrayList<Container> bestShipping(ItemOrder itemOrder) {
+		// formula to return the cheapest containers arrangement
+		return null;
 	}
 	
-	public ArrayList<Container> bestShipping(ArrayList<Item> items) {
+	public Double shippingPrice(Order order) {		// use the bestShipping() and totalWeight() to return the value
+		// P.S.: Add values ($) to the Containers Class
 		return null;
 	}
-
-	// Order (Containers) as argument
-	public Double shippingPrice(ArrayList<Container> order) {
-		return null;
+	
+	public void addItems(ItemOrder itemOrder, Order order) {
+		order.addItemOrders(itemOrder);
 	}
 
-	public void addOrder(ArrayList<Container> order) {
+	public void addOrder(Order order, ArrayList<Order> orders) {		// add Order to an ArrayList
 		
 	}
 
-	public void printOrder(ArrayList<Container> order) {
+	public void printOrder(Order order) {
+		// print Order's items		// call shippingPrice()
 		
 	}
 	

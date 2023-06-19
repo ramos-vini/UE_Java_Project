@@ -12,7 +12,7 @@ import orders.*;
 public class Main {
 
 	public static void main(String[] args) {
-		// Item available
+		// Items available
 		ArrayList<String> itemsList = new ArrayList<String>(Arrays.asList("Desktop", "Laptop", "LCD Screen", "Mouse"));
 
 		System.out.println(" ____________________ ");
@@ -25,15 +25,15 @@ public class Main {
 		Calculation calc = new Calculation();
 
 		// Order creation
-		ArrayList<Product> order = new ArrayList<Product>();
+		Order order = new Order();
 
-		// Item Input
+		// Item(s) Input
 		Scanner scanner = new Scanner(System.in);
 
 		Boolean addMoreProducts = true;
 
 		while (addMoreProducts == true) {
-			// Type
+			// Item's Type
 			Integer item = 0;
 
 			while (item < 1 || item > itemsList.size()) {
@@ -46,7 +46,7 @@ public class Main {
 				}
 			}
 
-			// Quantity
+			// Item's Quantity
 			Integer quantity = 0;
 
 			while (quantity < 1) {
@@ -59,33 +59,33 @@ public class Main {
 				}
 			}
 
-			// addItems()
-			Product product = null;
+			// Adding the item(s) to the order
+			ItemOrder itemOrder = null;
 
 			switch (item) {
 			case 1:
-				product = new Product(new Desktop(), quantity);
+				itemOrder = new ItemOrder(new Desktop(), quantity);
 				break;
 
 			case 2:
-				product = new Product(new Laptop(), quantity);
+				itemOrder = new ItemOrder(new Laptop(), quantity);
 				break;
 
 			case 3:
-				product = new Product(new LcdScreen(), quantity);
+				itemOrder = new ItemOrder(new LcdScreen(), quantity);
 				break;
 
 			case 4:
-				product = new Product(new Mouse(), quantity);
+				itemOrder = new ItemOrder(new Mouse(), quantity);
 				break;
 
 			default:
 				break;
 			}
 
-			calc.addItems(product, order);
+			calc.addItems(itemOrder, order);
 
-			// Add more products or Finish the Order
+			// User Choice: Add more products or finish the order
 			String addMoreResponse = "";
 			while (!addMoreResponse.equalsIgnoreCase("Y") && !addMoreResponse.equalsIgnoreCase("N")) {
 				try {
@@ -104,22 +104,22 @@ public class Main {
 		scanner.close();
 
 		// addOrder()
-		System.out.println(order.get(0).getItem().getType());
-		System.out.println(order.get(0).getQuantity());
 		System.out.println("Order added!");
+
 	}
 
 	// Test static methods
 	public static void addProductDetails() {
-
+		// call ItemOrder's setDetails()
 	}
 
 	public static void readOrder() {
-
+		// print Order's items
 	}
 
 	public static void printResults() {
-
+		// call printOrder()
+		// call bestShipping
 	}
 
 }
