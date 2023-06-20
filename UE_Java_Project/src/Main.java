@@ -141,11 +141,8 @@ public class Main {
 		// Add order to orders array
 		calc.addOrder(order, orders);
 
-		// Reading the order
-		System.out.println("\n*************************");
-		System.out.println("Thank you for your Order!");
-		System.out.println("*************************");
-		readOrder(order);
+		// Printing Order Results
+		printResults(order);
 	}
 
 	// Test static methods
@@ -154,8 +151,9 @@ public class Main {
 	}
 
 	public static void readOrder(Order order) {
+		
 		System.out.println("\nSummary: ");
-
+		
 		ArrayList<ItemOrder> itemOrders = order.getItemOrders();
 
 		for (ItemOrder item : itemOrders) {
@@ -169,8 +167,16 @@ public class Main {
 
 	}
 
-	public static void printResults() {
-		// printOrder() + print bestShipping()
+	public static void printResults(Order order) {
+		Calculation calc = new Calculation();
+		
+		System.out.println("\n*************************");
+		System.out.println("Thank you for your Order!");
+		System.out.println("*************************");
+		readOrder(order);
+		//print containers
+		System.out.printf("\nShipping Price: %.2f €", calc.shippingPrice(order));
+		
 	}
 
 }

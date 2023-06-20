@@ -52,10 +52,10 @@ public class Calculation {
 		SmallContainer smallContainer = new SmallContainer();
 		Double smallVolume = smallContainer.calculateVolume();
 		Integer smallQuantity = 0;
-		
+
 		// Calculate Containers' Quantities
 		Double totalVolume = totalVolume(order);
-		
+
 		if (totalVolume > smallVolume) {
 			bigQuantity = (int) (totalVolume / bigVolume);
 
@@ -68,7 +68,7 @@ public class Calculation {
 		} else {
 			smallQuantity++;
 		}
-		
+
 		// Add Containers to the Order
 		if (bigQuantity > 0) {
 			ContainerOrder bigContainerOrder = new ContainerOrder(bigContainer, bigQuantity);
@@ -83,9 +83,30 @@ public class Calculation {
 	}
 
 	public Double shippingPrice(Order order) {
-		// use the bestShipping() to calc the value
-		// P.S.: Add values ($) to the Containers Class
-		return null;
+		// Big Container
+		Double bigPrice = 1800.0;
+
+		// Small Container (<= 500kg)
+		Double smallPrice1 = 1000.0;
+		// Small Container (> 500kg)
+		Double smallPrice2 = 1200.0;
+		
+		Double totalPrice = 0.0;
+		
+		// Container Price Checker
+		for (ContainerOrder containerOrder : order.getContainerOrders()) {
+			Double price = 0.0;
+
+			if (containerOrder.getContainer().getType().equals("Big")) {
+				price = bigPrice;
+			} else {
+				price = smallPrice1;
+			}
+
+			totalPrice += price * containerOrder.getQuantity();
+		}
+
+		return totalPrice;
 	}
 
 	public void addOrder(Order order, ArrayList<Order> orders) {
@@ -93,8 +114,19 @@ public class Calculation {
 	}
 
 	public void printOrder(Order order) {
-		// readOrder() + print shippingPrice()
 
+		ArrayList<ItemOrder> itemOrders = order.getItemOrders();
+
+		for (ItemOrder item : itemOrders) {
+			System.out.printf("\nItem: [%s]", item.getItem().getType());
+			System.out.printf("\nQuantity: %d", item.getQuantity());
+			if (item.getDetails() != null) {
+				System.out.printf("\nDetails: \"%s\"", item.getDetails());
+			}
+			System.out.println();
+		}
+		
+		System.out.printf("\nShipping Price: %.2f €",shippingPrice(order) );
 	}
 
 }
