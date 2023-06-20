@@ -83,16 +83,36 @@ public class Main {
 				break;
 			}
 
+			// Add details?
+			String YNResponse = "";
+			while (!YNResponse.equalsIgnoreCase("Y") && !YNResponse.equalsIgnoreCase("N")) {
+				try {
+					System.out.println("\nAdd product details? (Y/N)");
+					YNResponse = scanner.nextLine();
+
+					if (YNResponse.equalsIgnoreCase("Y")) {
+						System.out.println("\nEnter the details for [" + itemsList.get(item - 1) + " (x" + quantity + ")]: ");
+						String details = scanner.nextLine();
+						
+						addProductDetails(itemOrder, details);
+					}
+
+				} catch (Exception e) {
+					scanner.nextLine();
+				}
+			}
+			
+			// Add items to the order
 			calc.addItems(itemOrder, order);
 
-			// User Choice: Add more products or finish the order
-			String addMoreResponse = "";
-			while (!addMoreResponse.equalsIgnoreCase("Y") && !addMoreResponse.equalsIgnoreCase("N")) {
+			// Add more products or Finish the order
+			YNResponse = "";
+			while (!YNResponse.equalsIgnoreCase("Y") && !YNResponse.equalsIgnoreCase("N")) {
 				try {
 					System.out.println("\nAdd more products? (Y/N)");
-					addMoreResponse = scanner.nextLine();
+					YNResponse = scanner.nextLine();
 
-					if (addMoreResponse.equalsIgnoreCase("N")) {
+					if (YNResponse.equalsIgnoreCase("N")) {
 						addMoreProducts = false;
 					}
 
@@ -109,8 +129,8 @@ public class Main {
 	}
 
 	// Test static methods
-	public static void addProductDetails() {
-		// call ItemOrder's setDetails()
+	public static void addProductDetails(ItemOrder itemOrder, String details) {
+		itemOrder.setDetails(details);
 	}
 
 	public static void readOrder() {
