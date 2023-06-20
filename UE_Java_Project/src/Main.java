@@ -130,13 +130,6 @@ public class Main {
 		
 		// Add containers to the order
 		calc.bestShipping(order);
-		// Testing:
-		System.out.println("--> Testing bestShipping():");
-		
-		for(ContainerOrder contOrder : order.getContainerOrders()) {
-			System.out.println(contOrder.getContainer().getType() + " - " + contOrder.getQuantity());
-		};
-		
 
 		// Add order to orders array
 		calc.addOrder(order, orders);
@@ -152,7 +145,7 @@ public class Main {
 
 	public static void readOrder(Order order) {
 		
-		System.out.println("\nSummary: ");
+		System.out.println("\n# Summary: ");
 		
 		ArrayList<ItemOrder> itemOrders = order.getItemOrders();
 
@@ -170,12 +163,21 @@ public class Main {
 	public static void printResults(Order order) {
 		Calculation calc = new Calculation();
 		
+		// Print Items
 		System.out.println("\n*************************");
 		System.out.println("Thank you for your Order!");
 		System.out.println("*************************");
 		readOrder(order);
-		//print containers
-		System.out.printf("\nShipping Price: %.2f €", calc.shippingPrice(order));
+		
+		// Print Containers
+		System.out.println("\n# Best Shipping Method:\n");
+		
+		for(ContainerOrder contOrder : order.getContainerOrders()) {
+			System.out.println(contOrder.getContainer().getType() + " Container (x" + contOrder.getQuantity()+")");
+		};
+		
+		// Print Shipping Price
+		System.out.printf("\n# Shipping Price: %.2f €", calc.shippingPrice(order));
 		
 	}
 
