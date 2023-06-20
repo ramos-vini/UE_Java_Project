@@ -12,7 +12,7 @@ public class Order {
 		return itemOrders;
 	}
 
-	public void addItemOrders(ItemOrder itemOrder) {
+	public void addItemOrder(ItemOrder itemOrder) {
 		this.itemOrders.add(itemOrder);
 	}
 
@@ -20,7 +20,7 @@ public class Order {
 		return containerOrders;
 	}
 
-	public void addContainerOrders(ContainerOrder containerOrder) {
+	public void addContainerOrder(ContainerOrder containerOrder) {
 		this.containerOrders.add(containerOrder);
 	}
 }

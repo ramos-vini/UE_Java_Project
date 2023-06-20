@@ -18,12 +18,6 @@ public class Main {
 		// Items available
 		ArrayList<String> itemsList = new ArrayList<String>(Arrays.asList("Desktop", "Laptop", "LCD Screen", "Mouse"));
 
-		System.out.println(" ____________________ ");
-		for (int i = 0; i < itemsList.size(); i++) {
-			System.out.printf("| " + (i + 1) + "  -  %-12s%2s\n", itemsList.get(i), "|");
-			System.out.println("|____________________|");
-		}
-
 		// Calculation Object
 		Calculation calc = new Calculation();
 
@@ -36,6 +30,13 @@ public class Main {
 		Boolean addMoreProducts = true;
 
 		while (addMoreProducts == true) {
+			
+			System.out.println(" ____________________ ");
+			for (int i = 0; i < itemsList.size(); i++) {
+				System.out.printf("| " + (i + 1) + "  -  %-12s%2s\n", itemsList.get(i), "|");
+				System.out.println("|____________________|");
+			}
+			
 			// Item's Type
 			Integer item = 0;
 
@@ -126,12 +127,22 @@ public class Main {
 			}
 		}
 		scanner.close();
+		
+		// Add containers to the order
+		calc.bestShipping(order);
+		// Testing:
+		System.out.println("--> Testing bestShipping():");
+		
+		for(ContainerOrder contOrder : order.getContainerOrders()) {
+			System.out.println(contOrder.getContainer().getType() + " - " + contOrder.getQuantity());
+		};
+		
 
-		// Adding order to orders array
+		// Add order to orders array
 		calc.addOrder(order, orders);
 
 		// Reading the order
-		System.out.println("*************************");
+		System.out.println("\n*************************");
 		System.out.println("Thank you for your Order!");
 		System.out.println("*************************");
 		readOrder(order);
