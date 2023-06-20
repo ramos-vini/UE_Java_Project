@@ -30,13 +30,13 @@ public class Main {
 		Boolean addMoreProducts = true;
 
 		while (addMoreProducts == true) {
-			
+
 			System.out.println(" ____________________ ");
 			for (int i = 0; i < itemsList.size(); i++) {
 				System.out.printf("| " + (i + 1) + "  -  %-12s%2s\n", itemsList.get(i), "|");
 				System.out.println("|____________________|");
 			}
-			
+
 			// Item's Type
 			Integer item = 0;
 
@@ -127,7 +127,7 @@ public class Main {
 			}
 		}
 		scanner.close();
-		
+
 		// Add containers to the order
 		calc.bestShipping(order);
 
@@ -138,15 +138,15 @@ public class Main {
 		printResults(order);
 	}
 
-	// Test static methods
+	// Test Methods
 	public static void addProductDetails(ItemOrder itemOrder, String details) {
 		itemOrder.setDetails(details);
 	}
 
 	public static void readOrder(Order order) {
-		
+
 		System.out.println("\n# Summary: ");
-		
+
 		ArrayList<ItemOrder> itemOrders = order.getItemOrders();
 
 		for (ItemOrder item : itemOrders) {
@@ -162,23 +162,24 @@ public class Main {
 
 	public static void printResults(Order order) {
 		Calculation calc = new Calculation();
-		
+
 		// Print Items
 		System.out.println("\n*************************");
 		System.out.println("Thank you for your Order!");
 		System.out.println("*************************");
 		readOrder(order);
-		
+
 		// Print Containers
 		System.out.println("\n# Best Shipping Method:\n");
-		
-		for(ContainerOrder contOrder : order.getContainerOrders()) {
-			System.out.println(contOrder.getContainer().getType() + " Container (x" + contOrder.getQuantity()+")");
-		};
-		
+
+		for (ContainerOrder contOrder : order.getContainerOrders()) {
+			System.out.println(contOrder.getContainer().getType() + " Container (x" + contOrder.getQuantity() + ")");
+		}
+		;
+
 		// Print Shipping Price
 		System.out.printf("\n# Shipping Price: %.2f €", calc.shippingPrice(order));
-		
+
 	}
 
 }

@@ -83,24 +83,46 @@ public class Calculation {
 	}
 
 	public Double shippingPrice(Order order) {
-		// Big Container
-		Double bigPrice = 1800.0;
-
-		// Small Container (<= 500kg)
+		/*
 		Double smallPrice1 = 1000.0;
-		// Small Container (> 500kg)
-		Double smallPrice2 = 1200.0;
 		
+		Double smallPrice2 = 1200.0;
+		*/
+		
+		// Weight Distribution
+		Double totalWeight = totalWeight(order);
+		Double totalVolume = totalVolume(order);
+		
+		// Big Containers' Volume
+		Double bigVolume = 0.0;
+		for (ContainerOrder containerOrder : order.getContainerOrders()) {
+			if (containerOrder.getContainer().getType().equals("Big")) {
+				bigVolume += containerOrder.getContainer().calculateVolume() * containerOrder.getQuantity();
+			}
+		}
+		
+		// Small Containers' Volume
+		Double smallVolume = totalVolume - bigVolume;
+		
+		// Small Containers' Weight
+		Double smallWeight = smallVolume * totalWeight / totalVolume;
+		
+		// Small Container's Price
+		Double smallPrice = (smallWeight > 500) ? 1200.0 : 1000.0; // > 500kg: 1200 €; <= 500kg: 1000 €
+		
+		// Big Container's Price
+		Double bigPrice = 1800.0;
+		
+		// Total Price
 		Double totalPrice = 0.0;
 		
-		// Container Price Checker
 		for (ContainerOrder containerOrder : order.getContainerOrders()) {
 			Double price = 0.0;
 
 			if (containerOrder.getContainer().getType().equals("Big")) {
 				price = bigPrice;
 			} else {
-				price = smallPrice1;
+				price = smallPrice;
 			}
 
 			totalPrice += price * containerOrder.getQuantity();
