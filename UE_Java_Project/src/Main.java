@@ -135,7 +135,6 @@ public class Main {
 		System.out.println("Thank you for your Order!");
 		System.out.println("*************************");
 		readOrder(order);
-
 	}
 
 	// Test static methods
@@ -144,7 +143,6 @@ public class Main {
 	}
 
 	public static void readOrder(Order order) {
-		// (print ItemOrders and ContainerOrders from Order)
 		System.out.println("\nSummary: ");
 
 		ArrayList<ItemOrder> itemOrders = order.getItemOrders();

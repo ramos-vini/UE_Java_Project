@@ -13,22 +13,37 @@ public class Calculation{
 	public void printItem(Item item) {		item.printInfo();
 	}
 
-	// itemOrder (items) as argument
-	public Double totalVolume(ItemOrder itemOrder) {		
-		Double volume = itemOrder.getItem().calculateVolume() * itemOrder.getQuantity();
+	// ItemOrder as argument
+	public void addItems(ItemOrder itemOrder, Order order) {
+		order.addItemOrders(itemOrder);
+	}
+
+	// Order as argument
+	public Double totalVolume(Order order) {
+		
+		ArrayList<ItemOrder> itemOrders = order.getItemOrders();
+		
+		Double volume = 0.0;
+		for(ItemOrder itemOrder : itemOrders) {
+			volume += itemOrder.getItem().calculateVolume() * itemOrder.getQuantity();
+		}
 		
 		return volume;
 	}
 
-	public Double totalWeight(ItemOrder itemOrder) {
-
-		Double weight = itemOrder.getItem().getWeight() * itemOrder.getQuantity();
+	public Double totalWeight(Order order) {
+		
+		ArrayList<ItemOrder> itemOrders = order.getItemOrders();
+		
+		Double weight = 0.0;
+		for(ItemOrder itemOrder : itemOrders) {
+			weight += itemOrder.getItem().getWeight() * itemOrder.getQuantity();
+		}
 		
 		return weight;
 	}
-
-	// Order as argument
-	public ArrayList<Container> bestShipping(ItemOrder itemOrder) {
+	
+	public ArrayList<Container> bestShipping(Order order) {
 		// formula to return the cheapest containers arrangement
 		return null;
 	}
@@ -36,10 +51,6 @@ public class Calculation{
 	public Double shippingPrice(Order order) {		// use the bestShipping() and totalWeight() to return the value
 		// P.S.: Add values ($) to the Containers Class
 		return null;
-	}
-	
-	public void addItems(ItemOrder itemOrder, Order order) {
-		order.addItemOrders(itemOrder);
 	}
 
 	public void addOrder(Order order, ArrayList<Order> orders) {
