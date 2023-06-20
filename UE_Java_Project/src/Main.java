@@ -125,6 +125,7 @@ public class Main {
 
 		// addOrder()
 		System.out.println("Order added!");
+		readOrder(order);
 
 	}
 
@@ -133,13 +134,25 @@ public class Main {
 		itemOrder.setDetails(details);
 	}
 
-	public static void readOrder() {
-		// print Order's items
+	public static void readOrder(Order order) {
+		// (print ItemOrders and ContainerOrders from Order)
+		System.out.println("\nOrder: ");
+		
+		ArrayList<ItemOrder> itemOrders = order.getItemOrders();
+		
+		for (ItemOrder item : itemOrders) {
+			System.out.printf("\nItem: %s",item.getItem().getType());
+			System.out.printf("\nQuantity: %d",item.getQuantity());
+			if(item.getDetails() != null) {
+				System.out.printf("\nDetails: %s", item.getDetails());
+			}
+			System.out.println();
+		}
+		
 	}
 
 	public static void printResults() {
-		// call printOrder()
-		// call bestShipping
+		// printOrder() + print bestShipping()
 	}
 
 }

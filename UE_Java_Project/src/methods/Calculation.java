@@ -47,7 +47,7 @@ public class Calculation{
 	}
 
 	public void printOrder(Order order) {
-		// print Order's items		// call shippingPrice()
+		// readOrder() + print shippingPrice()
 		
 	}
 	
