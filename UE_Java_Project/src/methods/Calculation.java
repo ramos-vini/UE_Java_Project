@@ -42,8 +42,8 @@ public class Calculation{
 		order.addItemOrders(itemOrder);
 	}
 
-	public void addOrder(Order order, ArrayList<Order> orders) {		// add Order to an ArrayList
-		
+	public void addOrder(Order order, ArrayList<Order> orders) {
+		orders.add(order);
 	}
 
 	public void printOrder(Order order) {

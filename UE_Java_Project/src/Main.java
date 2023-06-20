@@ -12,6 +12,9 @@ import orders.*;
 public class Main {
 
 	public static void main(String[] args) {
+		// Orders
+		ArrayList<Order> orders = new ArrayList<Order>();
+
 		// Items available
 		ArrayList<String> itemsList = new ArrayList<String>(Arrays.asList("Desktop", "Laptop", "LCD Screen", "Mouse"));
 
@@ -91,9 +94,10 @@ public class Main {
 					YNResponse = scanner.nextLine();
 
 					if (YNResponse.equalsIgnoreCase("Y")) {
-						System.out.println("\nEnter the details for [" + itemsList.get(item - 1) + " (x" + quantity + ")]: ");
+						System.out.println(
+								"\nEnter the details for [" + itemsList.get(item - 1) + " (x" + quantity + ")]: ");
 						String details = scanner.nextLine();
-						
+
 						addProductDetails(itemOrder, details);
 					}
 
@@ -101,7 +105,7 @@ public class Main {
 					scanner.nextLine();
 				}
 			}
-			
+
 			// Add items to the order
 			calc.addItems(itemOrder, order);
 
@@ -123,8 +127,13 @@ public class Main {
 		}
 		scanner.close();
 
-		// addOrder()
-		System.out.println("Order added!");
+		// Adding order to orders array
+		calc.addOrder(order, orders);
+
+		// Reading the order
+		System.out.println("*************************");
+		System.out.println("Thank you for your Order!");
+		System.out.println("*************************");
 		readOrder(order);
 
 	}
@@ -136,19 +145,19 @@ public class Main {
 
 	public static void readOrder(Order order) {
 		// (print ItemOrders and ContainerOrders from Order)
-		System.out.println("\nOrder: ");
-		
+		System.out.println("\nSummary: ");
+
 		ArrayList<ItemOrder> itemOrders = order.getItemOrders();
-		
+
 		for (ItemOrder item : itemOrders) {
-			System.out.printf("\nItem: %s",item.getItem().getType());
-			System.out.printf("\nQuantity: %d",item.getQuantity());
-			if(item.getDetails() != null) {
-				System.out.printf("\nDetails: %s", item.getDetails());
+			System.out.printf("\nItem: [%s]", item.getItem().getType());
+			System.out.printf("\nQuantity: %d", item.getQuantity());
+			if (item.getDetails() != null) {
+				System.out.printf("\nDetails: \"%s\"", item.getDetails());
 			}
 			System.out.println();
 		}
-		
+
 	}
 
 	public static void printResults() {
